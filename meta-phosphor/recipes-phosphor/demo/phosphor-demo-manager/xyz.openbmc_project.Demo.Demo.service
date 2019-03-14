@@ -1,0 +1,15 @@
+[Unit]
+Description=Phosphor Time Manager daemon
+Before=mapper-wait@-xyz-openbmc_project-state-bmc.service
+Wants=obmc-mapper.target
+After=obmc-mapper.target
+
+[Service]
+Restart=always
+ExecStart=/usr/bin/env phosphor-demo-state-manager
+SyslogIdentifier=phosphor-demo-state-manager
+Type=dbus
+BusName={BUSNAME}
+
+[Install]
+WantedBy={SYSTEMD_DEFAULT_TARGET}
